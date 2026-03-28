@@ -1,0 +1,257 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6f9b69",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#171b17",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-primary/10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-20 items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-white">
+<span class="material-symbols-outlined" style="">forest</span>
+</div>
+<h1 class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white uppercase" style="">Explora <span class="text-primary" style="">Caquetá</span></h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold text-primary" href="#" style="">Home</a>
+<a class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="#" style="">Planes</a>
+<a class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="#" style="">Sitios/Actividades</a>
+<a class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="#" style="">Acerca de</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all shadow-md shadow-primary/20" style="">
+<span class="material-symbols-outlined text-sm" style="">login</span>
+                            Login
+                        </button>
+<button class="md:hidden text-slate-900 dark:text-white" style="">
+<span class="material-symbols-outlined" style="">menu</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative h-[85vh] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Lush green Amazon rainforest river and waterfall landscape" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuB6aB1OqFsG8iGytQuO0egF3B0bKBfpBOOPUgucjEZsQF_C29aXAs250nRCqTowYlR5YST7RoQ0sPNEiWUySv_-vOGT0bAwo-NJSckOjK8luPe6JV91KXnxy0g9tHbrY5bpSSdymFd6udL5qYgiCelDClo4xtYLod-BZwqGDsJhj7w8Zuvdhak-yA9F7Y0pvkzD2Bd4voVVI8J1yrI7y-jtkXRBvqBD50I1StK3NahD_YV2fo1ng7iW5FIWu2n7Cd-Ro7-oh6UNpJo');">
+</div>
+<div class="relative h-full max-w-7xl mx-auto px-4 flex flex-col items-center justify-center text-center">
+<div class="max-w-3xl mb-12">
+<h2 class="text-white text-5xl md:text-7xl font-extrabold leading-tight tracking-tight mb-6" style="">
+                        Descubre el Corazón del&nbsp;<span class="text-primary" style="">Caquetá</span></h2>
+<p class="text-white/90 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed" style="">
+                        Aventuras inolvidables en las selvas y ríos indómitos del Caquetá, Colombia. Tu portal hacia lo inexplorado.
+                    </p>
+</div>
+<!-- Search Form -->
+<div class="w-full max-w-5xl bg-white dark:bg-background-dark p-2 md:p-3 rounded-2xl md:rounded-full shadow-2xl flex flex-col md:flex-row items-center gap-2">
+<div class="flex-1 w-full flex items-center gap-3 px-6 py-3 border-b md:border-b-0 md:border-r border-slate-100 dark:border-slate-800">
+<span class="material-symbols-outlined text-primary" style="">location_on</span>
+<div class="flex flex-col items-start w-full">
+<span class="text-[10px] font-bold uppercase text-slate-400" style="">Destino</span>
+<input class="w-full border-0 p-0 text-sm font-semibold focus:ring-0 bg-transparent placeholder:text-slate-400" placeholder="¿A dónde quieres ir?" type="text">
+</div>
+</div>
+<div class="flex-1 w-full flex items-center gap-3 px-6 py-3 border-b md:border-b-0 md:border-r border-slate-100 dark:border-slate-800">
+<span class="material-symbols-outlined text-primary" style="">calendar_today</span>
+<div class="flex flex-col items-start w-full">
+<span class="text-[10px] font-bold uppercase text-slate-400" style="">Fechas</span>
+<input class="w-full border-0 p-0 text-sm font-semibold focus:ring-0 bg-transparent placeholder:text-slate-400" placeholder="Seleccionar fechas" type="text">
+</div>
+</div>
+<div class="flex-1 w-full flex items-center gap-3 px-6 py-3">
+<span class="material-symbols-outlined text-primary" style="">group</span>
+<div class="flex flex-col items-start w-full">
+<span class="text-[10px] font-bold uppercase text-slate-400" style="">Viajeros</span>
+<input class="w-full border-0 p-0 text-sm font-semibold focus:ring-0 bg-transparent placeholder:text-slate-400" placeholder="Personas" type="text">
+</div>
+</div>
+<button class="w-full md:w-auto px-10 py-4 rounded-full bg-primary text-white font-bold text-base hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-primary/30" style="">
+                        Buscar
+                    </button>
+</div>
+</div>
+</section>
+<!-- Featured Plans Section -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+<div class="max-w-2xl">
+<span class="text-primary font-bold tracking-widest uppercase text-sm mb-2 block" style="">Experiencias Únicas</span>
+<h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white" style="">Planes Destacados</h3>
+<p class="mt-4 text-slate-600 dark:text-slate-400" style="">Seleccionamos las mejores rutas para que vivas la selva con seguridad y respeto por la naturaleza.</p>
+</div>
+<button class="flex items-center gap-2 text-primary font-bold hover:underline" style="">
+                    Ver todos los planes
+                    <span class="material-symbols-outlined" style="">arrow_forward</span>
+</button>
+</div>
+<!-- Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Plan Card 1 -->
+<div class="group bg-white dark:bg-background-dark rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-800">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Adventure activity in Rio Hacha, Caquetá" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxnl6JlaU7j0kiMxtS4aZPGnG7uAU4t2juu3EaDfMBEI_HdP9rkXclSouUgUoBgDgreo6AD8kr7KEt-n1wMKnPxHVYemeKH9a1I2Y_fcCMBBwwJp_lC_S1bQtKHBde-8hykTS36a6KT8h5RuPsNMTO2GK3GSUhppqj01bQmZAGtJgcff6Uw8r2v030Xwy2i3xTjkuYhPSePlgm7nIBNH5c7pbBGHxM6As1I-uowK4noOmOwgXHLGlS0XKxTLxWfT5sNNnt7izXNy4" style="">
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-slate-900 shadow-sm" style="">
+                            ⭐ 4.9
+                        </div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-4 mb-3 text-xs font-semibold text-slate-400">
+<div class="flex items-center gap-1" style="">
+<span class="material-symbols-outlined text-sm" style="">schedule</span>
+                                3 Días / 2 Noches
+                            </div>
+<div class="flex items-center gap-1 text-primary" style="">
+<span class="material-symbols-outlined text-sm" style="">verified</span>
+                                Guía local
+                            </div>
+</div>
+<h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2" style="">Aventura en el Hacha</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-6 line-clamp-2" style="">Recorrido extremo por el río Hacha con canotaje y avistamiento de aves amazónicas.</p>
+<div class="flex items-center justify-between border-t border-slate-50 dark:border-slate-800 pt-4">
+<div>
+<span class="text-[10px] font-bold text-slate-400 uppercase" style="">Desde</span>
+<p class="text-2xl font-black text-slate-900 dark:text-white" style="">$450.000 <span class="text-sm font-normal text-slate-400" style="">/pp</span></p>
+</div>
+<button class="bg-primary/10 text-primary p-3 rounded-2xl hover:bg-primary hover:text-white transition-colors" style="">
+<span class="material-symbols-outlined" style="">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Plan Card 2 -->
+<div class="group bg-white dark:bg-background-dark rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-800">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Cascadas del Fin del Mundo waterfall hidden in jungle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiNiQF69AfqYso9dTdHlFfdM8AO2gOTVSVGIcFGYgmef8jIKf-SIVGhWgeGuNpD9Uyy6WHqEfqHoBBj6lxWsAE6J_SIOpXW0oWApkX6JostbAsOvPDhwCJARmZ9aRcif74Dsejvu-4LNDs8boz7rc3FnNlH8rZeTIKCsUfpbJwMzZtp5H5lvth9Y30OIu57JVZfQMQuaOxndaAD8zVL3CsggM57lG9RqAWV-7-kf4QSJVn_Qt0SqActEj3f35org5tRm6sT8qrmrE" style="">
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-slate-900 shadow-sm" style="">
+                            ⭐ 5.0
+                        </div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-4 mb-3 text-xs font-semibold text-slate-400">
+<div class="flex items-center gap-1" style="">
+<span class="material-symbols-outlined text-sm" style="">schedule</span>
+                                2 Días / 1 Noche
+                            </div>
+<div class="flex items-center gap-1 text-primary" style="">
+<span class="material-symbols-outlined text-sm" style="">nature</span>
+                                Eco-Friendly
+                            </div>
+</div>
+<h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2" style="">Cascadas del Fin del Mundo</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-6 line-clamp-2" style="">Una caminata mística hasta una de las caídas de agua más espectaculares de la región.</p>
+<div class="flex items-center justify-between border-t border-slate-50 dark:border-slate-800 pt-4">
+<div>
+<span class="text-[10px] font-bold text-slate-400 uppercase" style="">Desde</span>
+<p class="text-2xl font-black text-slate-900 dark:text-white" style="">$320.000 <span class="text-sm font-normal text-slate-400" style="">/pp</span></p>
+</div>
+<button class="bg-primary/10 text-primary p-3 rounded-2xl hover:bg-primary hover:text-white transition-colors" style="">
+<span class="material-symbols-outlined" style="">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Plan Card 3 -->
+<div class="group bg-white dark:bg-background-dark rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-800">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Historical site in the Amazonian jungle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLjOYj555DCHVs8OKxzP3vPKmiHulA6NOR8Wc0mpXjH5J7f9BygyQ2A8QjJLO774XNte5h4CBvGMUR4OZ51k8L1dGeCN_X40l-nyetai8sWn_8KFLaRxt_8D7FvDE3JjBzew9TGVgtYAbwTQrkCWwjQr1QK-ZA28zwtb3DyZ3RX-LJUmIqJtP7yJPPbU0wRiwVyp4e88xYx2REJOJIds7imJvFXLAlPZSskXUZBaR6klPya8mCGZ-iuoJu8xMoBBiEiixQlWVgy_s" style="">
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-slate-900 shadow-sm" style="">
+                            ⭐ 4.7
+                        </div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-4 mb-3 text-xs font-semibold text-slate-400">
+<div class="flex items-center gap-1" style="">
+<span class="material-symbols-outlined text-sm" style="">schedule</span>
+                                4 Días / 3 Noches
+                            </div>
+<div class="flex items-center gap-1 text-primary" style="">
+<span class="material-symbols-outlined text-sm" style="">history_edu</span>
+                                Historia Viva
+                            </div>
+</div>
+<h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2" style="">Secretos del Orteguaza</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-6 line-clamp-2" style="">Navegación histórica y cultural conectando con las comunidades locales y su legado.</p>
+<div class="flex items-center justify-between border-t border-slate-50 dark:border-slate-800 pt-4">
+<div>
+<span class="text-[10px] font-bold text-slate-400 uppercase" style="">Desde</span>
+<p class="text-2xl font-black text-slate-900 dark:text-white" style="">$580.000 <span class="text-sm font-normal text-slate-400" style="">/pp</span></p>
+</div>
+<button class="bg-primary/10 text-primary p-3 rounded-2xl hover:bg-primary hover:text-white transition-colors" style="">
+<span class="material-symbols-outlined" style="">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Newsletter Section (Clean & Modern) -->
+<section class="bg-primary/10 dark:bg-primary/5 py-16">
+<div class="max-w-7xl mx-auto px-4 text-center">
+<div class="max-w-xl mx-auto">
+<span class="material-symbols-outlined text-primary text-5xl mb-4" style="">mail</span>
+<h4 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4" style="">¿Listo para la aventura?</h4>
+<p class="text-slate-600 dark:text-slate-400 mb-8" style="">Suscríbete para recibir ofertas exclusivas y guías de viaje directamente en tu correo.</p>
+<div class="flex flex-col sm:flex-row gap-3">
+<input class="flex-1 rounded-full px-6 py-4 border-slate-200 dark:border-slate-700 bg-white dark:bg-background-dark focus:ring-primary focus:border-primary" placeholder="Tu correo electrónico" type="email">
+<button class="bg-primary text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-transform" style="">Suscribirme</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-white dark:bg-background-dark border-t border-slate-100 dark:border-slate-800 py-12">
+<div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-white">
+<span class="material-symbols-outlined text-sm" style="">forest</span>
+</div>
+<span class="text-lg font-bold text-slate-900 dark:text-white" style="">Explora <span class="text-primary" style="">Caquetá</span></span>
+</div>
+<div class="flex gap-8 text-sm font-medium text-slate-500 dark:text-slate-400">
+<a class="hover:text-primary" href="#" style="">Privacidad</a>
+<a class="hover:text-primary" href="#" style="">Términos</a>
+<a class="hover:text-primary" href="#" style="">Contacto</a>
+</div>
+<div class="flex gap-4">
+<a class="p-2 bg-slate-50 dark:bg-slate-800 rounded-full hover:bg-primary/10 hover:text-primary transition-all" href="#" style="">
+<span class="material-symbols-outlined" style="">social_leaderboard</span>
+</a>
+<a class="p-2 bg-slate-50 dark:bg-slate-800 rounded-full hover:bg-primary/10 hover:text-primary transition-all" href="#" style="">
+<span class="material-symbols-outlined" style="">share</span>
+</a>
+</div>
+</div>
+<div class="text-center mt-12 text-slate-400 text-xs" style="">
+                © 2024 Explora Caquetá. Todos los derechos reservados. Hecho con amor por la biodiversidad.
+            </div>
+</footer>
+</div>
+</body></html>
