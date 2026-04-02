@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import Input from '@/components/shared/atoms/Input';
@@ -27,7 +27,7 @@ const LoginForm: React.FC = () => {
             <div className="w-full border-t border-slate-400"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="bg-background-light px-2 text-slate-600 font-bold uppercase tracking-widest text-[10px]">O continúa con tu correo</span>
+            <span className="bg-background-light px-2 text-slate-600 font-bold uppercase tracking-widest text-[10px]">O continÃºa con tu correo</span>
           </div>
         </div>
 
@@ -43,8 +43,8 @@ const LoginForm: React.FC = () => {
 
           <Input
             id="password"
-            label="Contraseña"
-            placeholder="••••••••"
+            label="ContraseÃ±a"
+            placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
             type={showPassword ? 'text' : 'password'}
             required
             className="px-2 py-2.5 font-medium border-slate-400 focus:border-primary transition-colors"
@@ -52,8 +52,8 @@ const LoginForm: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="text-slate-500 hover:text-slate-900 transition-colors"
-                title={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                className="rounded-full text-slate-500 hover:text-slate-900 transition-colors"
+                title={showPassword ? 'Ocultar contraseÃ±a' : 'Mostrar contraseÃ±a'}
               >
                 <Icon name={showPassword ? 'visibility_off' : 'visibility'} />
               </button>
@@ -66,7 +66,7 @@ const LoginForm: React.FC = () => {
               <label htmlFor="remember-me" className="ml-2 block text-sm text-slate-900 font-bold cursor-pointer whitespace-nowrap">Recordarme</label>
             </div>
             <Link href="#" className="text-sm font-bold text-primary hover:text-primary transition-all underline-offset-4 hover:underline whitespace-nowrap">
-              ¿Olvidaste tu contraseña?
+              Â¿Olvidaste tu contraseÃ±a?
             </Link>
           </div>
 
@@ -76,7 +76,7 @@ const LoginForm: React.FC = () => {
         </form>
 
         <p className="text-center text-sm text-slate-800 font-bold">
-          ¿Nuevo en la selva? {' '}
+          Â¿Nuevo en la selva? {' '}
           <Link href="#" className="text-primary hover:text-primary transition-all underline-offset-4 hover:underline">
             Crea una cuenta
           </Link>
@@ -87,3 +87,4 @@ const LoginForm: React.FC = () => {
 };
 
 export default LoginForm;
+

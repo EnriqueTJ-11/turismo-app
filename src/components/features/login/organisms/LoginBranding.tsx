@@ -1,4 +1,5 @@
-import React from 'react';
+﻿import React from 'react';
+import Image from 'next/image';
 import Logo from '@/components/shared/atoms/Logo';
 
 const LoginBranding: React.FC = () => {
@@ -31,10 +32,12 @@ const LoginBranding: React.FC = () => {
             <div className="flex -space-x-3">
               {[1, 2, 3].map((i) => (
                 <div key={i} className="h-8 w-8 rounded-full border-2 border-white overflow-hidden shadow-lg">
-                  <img
-                    alt="Explorador"
+                  <Image
+                    alt={`Explorador ${i}`}
                     className="h-full w-full object-cover"
                     src={`https://i.pravatar.cc/150?u=explorer${i}`}
+                    width={32}
+                    height={32}
                   />
                 </div>
               ))}

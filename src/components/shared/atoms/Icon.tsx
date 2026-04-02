@@ -9,8 +9,7 @@ interface IconProps {
 const Icon: React.FC<IconProps> = ({ name, className = '', fill = false }) => {
   return (
     <span 
-      className={`material-symbols-outlined ${className} ${fill ? 'font-fill' : ''}`}
-      style={{ fontVariationSettings: fill ? "'FILL' 1" : "'FILL' 0" }}
+      className={`material-symbols-outlined ${fill ? 'font-fill' : ''} ${className}`}
     >
       {name}
     </span>
