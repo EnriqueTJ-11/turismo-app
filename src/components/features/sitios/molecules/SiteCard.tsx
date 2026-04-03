@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Icon from "@/components/shared/atoms/Icon";
 import { type SiteCatalogItem } from "@/types/siteCatalog";
 
@@ -9,7 +10,12 @@ interface SiteCardProps {
 
 const SiteCard: React.FC<SiteCardProps> = ({ site }) => {
   return (
-    <article className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 grid grid-cols-1 md:grid-cols-[180px,1fr] cursor-pointer">
+    <Link
+      href="/sitios/detalle"
+      title={`Ver ${site.name}`}
+      aria-label={`Ver detalle de ${site.name}`}
+      className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 grid grid-cols-1 md:grid-cols-[180px,1fr] cursor-pointer"
+    >
       <div className="relative h-56 md:h-full md:min-h-40 overflow-hidden">
         <Image
           src={site.image}
@@ -33,17 +39,13 @@ const SiteCard: React.FC<SiteCardProps> = ({ site }) => {
           {site.description}
         </p>
         <div className="mt-auto flex items-center justify-between">
-          <button
-            type="button"
-            className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-full text-sm font-bold transition-colors cursor-pointer flex items-center gap-2"
-            title={`Ver ${site.name}`}
-          >
+          <span className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-full text-sm font-bold transition-colors flex items-center gap-2">
             <Icon name="visibility" />
             Ver
-          </button>
+          </span>
         </div>
       </div>
-    </article>
+    </Link>
   );
 };
 
