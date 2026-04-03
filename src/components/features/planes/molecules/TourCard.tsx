@@ -1,7 +1,10 @@
-﻿import React from "react";
+﻿"use client";
+
+import React from "react";
 import Image from "next/image";
 import Icon from "@/components/shared/atoms/Icon";
 import { type PlanCatalogItem } from "@/types/planCatalog";
+import { useRouter } from "next/navigation";
 
 interface TourCardProps {
   plan: PlanCatalogItem;
@@ -15,8 +18,25 @@ const difficultyColors: Record<PlanCatalogItem["difficulty"], string> = {
 };
 
 const TourCard: React.FC<TourCardProps> = ({ plan, onToggleFavorite }) => {
+  const router = useRouter();
+  const handleNavigate = () => {
+    router.push("/planes/detalle");
+  };
+
   return (
-    <div className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 cursor-pointer">
+    <div
+      className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 cursor-pointer"
+      role="link"
+      tabIndex={0}
+      title="Ver detalle del plan"
+      onClick={handleNavigate}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          handleNavigate();
+        }
+      }}
+    >
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={plan.image}
@@ -44,7 +64,10 @@ const TourCard: React.FC<TourCardProps> = ({ plan, onToggleFavorite }) => {
             title={
               plan.isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"
             }
-            onClick={() => onToggleFavorite?.(plan.id)}
+            onClick={(event) => {
+              event.stopPropagation();
+              onToggleFavorite?.(plan.id);
+            }}
           >
             <Icon
               name="favorite"
@@ -90,6 +113,7 @@ const TourCard: React.FC<TourCardProps> = ({ plan, onToggleFavorite }) => {
           <button
             className="bg-primary/10 hover:bg-primary hover:text-white text-primary px-3 py-2 rounded-full text-xs font-bold transition-all flex items-center justify-center gap-0.5 w-full cursor-pointer"
             type="button"
+            onClick={(event) => event.stopPropagation()}
           >
             <Icon name="event_available" className="text-base" />
             Reservar
