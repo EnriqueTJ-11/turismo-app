@@ -22,6 +22,7 @@ const LoginTemplate: React.FC = () => {
               Amaturis
             </h2>
           </div>
+          <h1 className="sr-only">Acceso a Amaturis</h1>
 
           <LoginForm />
         </div>
@@ -29,15 +30,27 @@ const LoginTemplate: React.FC = () => {
         {/* Footer links */}
         <div className="mt-auto w-full py-6 border-t border-slate-200 flex flex-wrap justify-center gap-x-4 gap-y-2 text-[10px] font-black uppercase tracking-widest text-slate-700 transition-opacity hover:opacity-100">
           <div className="flex gap-4">
-            <Link className="hover:text-primary transition-colors" href="#">
+            <Link
+              className="hover:text-primary transition-colors"
+              href="#"
+              title="Política de privacidad"
+            >
               Política de Privacidad
             </Link>
             <span className="text-slate-400">/</span>
-            <Link className="hover:text-primary transition-colors" href="#">
+            <Link
+              className="hover:text-primary transition-colors"
+              href="#"
+              title="Términos de servicio"
+            >
               Términos de Servicio
             </Link>
             <span className="text-slate-400">/</span>
-            <Link className="hover:text-primary transition-colors" href="#">
+            <Link
+              className="hover:text-primary transition-colors"
+              href="#"
+              title="Centro de ayuda"
+            >
               Centro de Ayuda
             </Link>
           </div>
