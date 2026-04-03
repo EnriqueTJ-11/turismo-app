@@ -37,7 +37,7 @@ const TourCard: React.FC<TourCardProps> = ({ plan, onToggleFavorite }) => {
         }
       }}
     >
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative aspect-4/3 overflow-hidden">
         <Image
           src={plan.image}
           alt={plan.title}
