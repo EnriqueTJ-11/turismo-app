@@ -1,34 +1,47 @@
-import React from 'react';
-import Icon from '@/components/shared/atoms/Icon';
-import Button from '@/components/shared/atoms/Button';
+﻿import React from "react";
+import Image from "next/image";
+import Icon from "@/components/shared/atoms/Icon";
 
 const Newsletter: React.FC = () => {
   return (
-    <section className="bg-primary/5 dark:bg-primary/5 py-40 relative overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
-
-      <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
-        <div className="max-w-3xl mx-auto space-y-8">
-          <div className="inline-flex p-5 rounded-3xl bg-primary/10 text-primary shadow-xl shadow-primary/5">
-            <Icon name="mail" className="text-5xl" />
-          </div>
-          <h4 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white leading-tight tracking-tighter uppercase" style={{ WebkitTextStroke: '1px rgba(0,0,0,0.05)' }}>
+    <section className="relative py-16 overflow-hidden">
+      <div className="absolute inset-0">
+        <Image
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxnl6JlaU7j0kiMxtS4aZPGnG7uAU4t2juu3EaDfMBEI_HdP9rkXclSouUgUoBgDgreo6AD8kr7KEt-n1wMKnPxHVYemeKH9a1I2Y_fcCMBBwwJp_lC_S1bQtKHBde-8hykTS36a6KT8h5RuPsNMTO2GK3GSUhppqj01bQmZAGtJgcff6Uw8r2v030Xwy2i3xTjkuYhPSePlgm7nIBNH5c7pbBGHxM6As1I-uowK4noOmOwgXHLGlS0XKxTLxWfT5sNNnt7izXNy4"
+          alt="Aventura en el río Hacha, Caquetá"
+          title="Aventura en el río Hacha, Caquetá"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70" />
+      </div>
+      <div className="relative max-w-7xl mx-auto px-4 text-center">
+        <div className="max-w-xl mx-auto">
+          <Icon
+            name="mail"
+            className="text-primary text-[192px] leading-none mb-4"
+          />
+          <h4 className="text-2xl md:text-3xl font-bold text-white mb-4">
             ¿Listo para la aventura?
           </h4>
-          <p className="text-xl md:text-2xl font-medium text-slate-500 dark:text-slate-400 mb-12 max-w-xl mx-auto leading-relaxed">
-            Suscríbete para recibir ofertas exclusivas y guías de viaje directamente en tu correo.
+          <p className="text-white/90 mb-8">
+            Suscríbete para recibir ofertas exclusivas y guías de viaje
+            directamente en tu correo.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 p-2 bg-white dark:bg-slate-900 rounded-3xl sm:rounded-full shadow-2xl border border-slate-100 dark:border-slate-800 transition-shadow hover:shadow-primary/5">
-            <input 
-              className="flex-1 rounded-full px-8 py-5 border-0 bg-transparent text-lg font-bold focus:ring-0 dark:text-white placeholder:text-slate-400" 
-              placeholder="Tu correo electrónico" 
-              type="email" 
+          <div className="flex flex-col sm:flex-row gap-3">
+            <input
+              className="flex-1 rounded-full px-6 py-4 border border-slate-200 bg-white focus:ring-primary focus:border-primary"
+              placeholder="Tu correo electrónico"
+              type="email"
             />
-            <Button className="px-12 py-5 rounded-full shadow-lg shadow-primary/20 bg-primary hover:scale-[1.02]">
+            <button
+              className="bg-primary text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-transform cursor-pointer flex items-center justify-center gap-2"
+              type="button"
+            >
+              <Icon name="mail" className="text-base" />
               Suscribirme
-            </Button>
+            </button>
           </div>
         </div>
       </div>
