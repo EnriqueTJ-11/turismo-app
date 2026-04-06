@@ -1,0 +1,16 @@
+import { z } from "zod";
+
+export const PaqueteApiSchema = z.object({
+  id: z.string(),
+  nombre: z.string(),
+  precio: z.number(),
+  descripcion: z.string(),
+  duracion_dias: z.number().optional().nullable(),
+  dificultad: z.string().optional().nullable(),
+  destinos: z.string().optional().nullable(),
+  municipios: z.string().optional().nullable(),
+  categorias: z.string().optional().nullable(),
+  capacidad_max_personas: z.number().optional().nullable(),
+});
+
+export const PaquetesApiSchema = z.array(PaqueteApiSchema);

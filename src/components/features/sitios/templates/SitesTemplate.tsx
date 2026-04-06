@@ -4,7 +4,6 @@ import Footer from "@/components/shared/organisms/Footer";
 import SitesHero from "@/components/features/sitios/organisms/SitesHero";
 import SitesFilters from "@/components/features/sitios/organisms/SitesFilters";
 import SitesGrid from "@/components/features/sitios/organisms/SitesGrid";
-import PlansPagination from "@/components/features/planes/organisms/PlansPagination";
 
 const SitesTemplate: React.FC = () => {
   return (
@@ -15,7 +14,6 @@ const SitesTemplate: React.FC = () => {
         <div className="max-w-7xl mx-auto pb-12 pt-10 px-4 sm:px-6 lg:px-8">
           <SitesFilters />
           <SitesGrid />
-          <PlansPagination />
         </div>
       </main>
       <Footer />

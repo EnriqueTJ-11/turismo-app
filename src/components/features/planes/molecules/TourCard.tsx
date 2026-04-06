@@ -11,12 +11,6 @@ interface TourCardProps {
   onToggleFavorite?: (id: string) => void;
 }
 
-const difficultyColors: Record<PlanCatalogItem["difficulty"], string> = {
-  Fácil: "text-green-500",
-  Moderado: "text-orange-500",
-  Desafiante: "text-red-500",
-};
-
 const TourCard: React.FC<TourCardProps> = ({ plan, onToggleFavorite }) => {
   const router = useRouter();
   const handleNavigate = () => {
@@ -54,7 +48,7 @@ const TourCard: React.FC<TourCardProps> = ({ plan, onToggleFavorite }) => {
         )}
         <div className="absolute top-4 right-4">
           <button
-            className={`bg-white/60 backdrop-blur-md px-2 py-1 rounded-full transition-colors cursor-pointer ${
+            className={`bg-white/60 backdrop-blur-md px-1.5 py-px rounded-full transition-colors cursor-pointer ${
               plan.isFavorite
                 ? "text-red-500"
                 : "text-slate-800 hover:text-red-500"
@@ -69,11 +63,7 @@ const TourCard: React.FC<TourCardProps> = ({ plan, onToggleFavorite }) => {
               onToggleFavorite?.(plan.id);
             }}
           >
-            <Icon
-              name="favorite"
-              className="text-lg mt-1"
-              fill={plan.isFavorite}
-            />
+            <Icon name="favorite" className="mt-1" fill={plan.isFavorite} />
           </button>
         </div>
         <div className="absolute bottom-4 left-4 text-white">
@@ -102,12 +92,11 @@ const TourCard: React.FC<TourCardProps> = ({ plan, onToggleFavorite }) => {
           </div>
           <div className="flex flex-col">
             <span className="text-[10px] uppercase text-slate-400 font-bold">
-              Dificultad
+              Viajeros
             </span>
-            <span
-              className={`text-xs font-bold ${difficultyColors[plan.difficulty]}`}
-            >
-              {plan.difficulty}
+            <span className="text-xs font-bold flex items-center gap-1 text-slate-700">
+              <Icon name="person" className="text-xs" />
+              {plan.capacityMax ?? "N/D"}
             </span>
           </div>
           <button

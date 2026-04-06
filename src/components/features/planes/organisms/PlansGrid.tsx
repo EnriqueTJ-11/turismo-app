@@ -1,11 +1,9 @@
 import { getPlanCatalog } from "@/services/planCatalog";
-import PlansGridClient from "@/components/features/planes/organisms/PlansGridClient";
+import PlansExplorer from "@/components/features/planes/organisms/PlansExplorer";
 
 const PlansGrid = async () => {
   const plans = await getPlanCatalog();
-  const total = 12;
-
-  return <PlansGridClient initialPlans={plans} total={total} />;
+  return <PlansExplorer initialPlans={plans} />;
 };
 
 export default PlansGrid;
