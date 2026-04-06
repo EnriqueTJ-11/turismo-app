@@ -5,6 +5,7 @@ import Image from "next/image";
 import Icon from "@/components/shared/atoms/Icon";
 import { type PlanCatalogItem } from "@/types/planCatalog";
 import { useRouter } from "next/navigation";
+import { extractPlanSlug } from "@/utils/planId";
 
 interface TourCardProps {
   plan: PlanCatalogItem;
@@ -14,7 +15,8 @@ interface TourCardProps {
 const TourCard: React.FC<TourCardProps> = ({ plan, onToggleFavorite }) => {
   const router = useRouter();
   const handleNavigate = () => {
-    router.push("/planes/detalle");
+    const slug = extractPlanSlug(plan.id);
+    router.push(`/planes/${slug}`);
   };
 
   return (

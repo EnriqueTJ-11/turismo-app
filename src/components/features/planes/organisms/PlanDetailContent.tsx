@@ -1,32 +1,20 @@
-﻿import React from "react";
+﻿"use client";
+
+import React from "react";
 import Image from "next/image";
 import Icon from "@/components/shared/atoms/Icon";
 import Button from "@/components/shared/atoms/Button";
 import PlanDetailGallery from "@/components/features/planes/organisms/PlanDetailGallery";
 import PlanDetailMap from "@/components/features/planes/organisms/PlanDetailMap";
+import { type PlanDetail } from "@/types/planDetail";
 
-const activities = [
-  {
-    title: "Senderismo en la selva",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDF1k7JWAqcHrIZ7csMXOGesAGH_1paEuMxkdWsd7Ff97IAhWVLRR0KLwgZuZ007hw7VIf0bev40daaemE7kcN7TgHg8PyRWctewsQ-xM1ihFsBkk00q7acwvXwlYUTn3mwf1MaTyf-Qobvyv5qOKQ_Encvp6rRjYE619TMtjnZtPl1jpFgDzIVBueDrk3LGo_c7Ki0LmaEjftZWgI2GDi728PgtQYkwbBvZFtDk_0zKeAWPcbuRu-3d0HQe_5zeNHa3jLPF3-lCEM",
-    alt: "Caminante recorriendo un sendero selvático",
-  },
-  {
-    title: "Nado en el cañón",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAPb_-TnOqpiS-vqLCTsh1I_J5GINzSmlwiRrrlCIzgLN4aSF8IMaqEN43mppG3fGIpic-i2Jjk9T0xos7mZaM-nVZKbnEUFC389uuA5H4XXvHUxtwoRRClgSe6zuBBOzvNV1-4yFyQSlwd3ojXHqWPaUEwMCLqVSHKY6rcR1TvhnPnNBbhxrwuL6YEEe1G7RyNDwqI1dfq7-ZggXUbgO_wDA3Dhkrhj78LjQLEHDpPbdh4oIWMynjhtgdj5iyxQV3tVuNQ4qSojbc",
-    alt: "Piscina natural de aguas claras en el cañón",
-  },
-  {
-    title: "Avistamiento de aves",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCQp5IDmqzkmHP9nyOV2-JlUP2SgfJTQav_iaaL5yQCqHBU5KrbB03D7CjY0zxGa12SGpJds7_f9KrRUr7cfv8dy-PLENvoEsv5OGhijr0Tutczb5YFFUlkaYyDQ9AY14NPClwkX5ZOL0ARIQxs5oNB7TFtJ2i82eyoKPx9H75VUAKXRu2pacFLQ1-8XBoPIhK8AuZRZdZdewiXgLrtINiO_Jx9XVlkrVm_npJ4ZIb3BhEEOmLbdC2fqhWp8sMlaen3Yv0Or4VruaM",
-    alt: "Ave tropical sobre una rama en el bosque",
-  },
+const activityImages = [
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuDF1k7JWAqcHrIZ7csMXOGesAGH_1paEuMxkdWsd7Ff97IAhWVLRR0KLwgZuZ007hw7VIf0bev40daaemE7kcN7TgHg8PyRWctewsQ-xM1ihFsBkk00q7acwvXwlYUTn3mwf1MaTyf-Qobvyv5qOKQ_Encvp6rRjYE619TMtjnZtPl1jpFgDzIVBueDrk3LGo_c7Ki0LmaEjftZWgI2GDi728PgtQYkwbBvZFtDk_0zKeAWPcbuRu-3d0HQe_5zeNHa3jLPF3-lCEM",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuAPb_-TnOqpiS-vqLCTsh1I_J5GINzSmlwiRrrlCIzgLN4aSF8IMaqEN43mppG3fGIpic-i2Jjk9T0xos7mZaM-nVZKbnEUFC389uuA5H4XXvHUxtwoRRClgSe6zuBBOzvNV1-4yFyQSlwd3ojXHqWPaUEwMCLqVSHKY6rcR1TvhnPnNBbhxrwuL6YEEe1G7RyNDwqI1dfq7-ZggXUbgO_wDA3Dhkrhj78LjQLEHDpPbdh4oIWMynjhtgdj5iyxQV3tVuNQ4qSojbc",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuCQp5IDmqzkmHP9nyOV2-JlUP2SgfJTQav_iaaL5yQCqHBU5KrbB03D7CjY0zxGa12SGpJds7_f9KrRUr7cfv8dy-PLENvoEsv5OGhijr0Tutczb5YFFUlkaYyDQ9AY14NPClwkX5ZOL0ARIQxs5oNB7TFtJ2i82eyoKPx9H75VUAKXRu2pacFLQ1-8XBoPIhK8AuZRZdZdewiXgLrtINiO_Jx9XVlkrVm_npJ4ZIb3BhEEOmLbdC2fqhWp8sMlaen3Yv0Or4VruaM",
 ];
 
-const gallery = [
+const defaultGallery = [
   {
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCc9Xjje60wPicJSB0CVXvMGncHybiwofUUy2omxgKSZsjRYGUhD8nA3opGV_IURO9dlzo1xC_p8SKtc8qO74fasdXCvceZq8_-8_2dj17Jg-QigH3JXUjK9Q2nB6qfhHog2FKWwk2AnuUkHiC66SD6fnJlZXCkAPsiVcvlXm04301gJk2ls_p5tQCegI0RnsUUlQCWXURZpjUtPu2TIBMsnLpOwXUmwFGfjto414LsZOQhu8vPd-tYOXFCR2QYiTcFrHoz1SJbPIg",
@@ -49,7 +37,89 @@ const gallery = [
   },
 ];
 
-const PlanDetailContent: React.FC = () => {
+const formatDuration = (days?: number | null) => {
+  if (!days || days <= 0) return "Sin duración";
+  return days === 1 ? "1 Día" : `${days} Días`;
+};
+
+const formatCurrency = (value: number) =>
+  new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "COP",
+    maximumFractionDigits: 0,
+  }).format(value);
+
+interface PlanDetailContentProps {
+  plan: PlanDetail;
+}
+
+const PlanDetailContent: React.FC<PlanDetailContentProps> = ({ plan }) => {
+  const summaryItems = [
+    {
+      label: "Dificultad",
+      value: plan.difficulty ?? "No definida",
+      icon: "trending_up",
+    },
+    {
+      label: "Tamaño del grupo",
+      value: plan.capacityMax ? `Máx. ${plan.capacityMax}` : "Sin límite",
+      icon: "group",
+    },
+    {
+      label: "Duración",
+      value: formatDuration(plan.durationDays ?? undefined),
+      icon: "schedule",
+    },
+  ];
+
+  const activityNames = (plan.activities ?? []).filter(Boolean);
+  const activityCards = activityNames.slice(0, 3).map((title, index) => ({
+    title,
+    image: activityImages[index % activityImages.length],
+    alt: title,
+  }));
+
+  const includesFromServices = activityNames;
+  const includesFromText = plan.includes && plan.includes.length ? plan.includes : [];
+  const includesMerged = Array.from(
+    new Set([...includesFromServices, ...includesFromText])
+  );
+  const includes = includesMerged.length
+    ? includesMerged
+    : ["Sin información disponible"];
+  const excludes =
+    plan.excludes && plan.excludes.length
+      ? plan.excludes
+      : ["Sin información disponible"];
+
+  const itineraryItems = (plan.itinerary ?? []).filter(Boolean);
+  const destinationNames = (plan.destinations ?? [])
+    .map((dest) => dest.name)
+    .filter(Boolean);
+
+  const primaryDestination = plan.destinations?.[0];
+  const galleryImages =
+    destinationNames.length > 0
+      ? destinationNames.map((name, index) => ({
+          image: defaultGallery[index % defaultGallery.length].image,
+          alt: name,
+          label: name,
+        }))
+      : defaultGallery;
+
+  const rawMaxTravelers =
+    plan.capacityMax && plan.capacityMax > 0 ? plan.capacityMax : 10;
+  const maxTravelers = Math.max(rawMaxTravelers, 1);
+  const [selectedTravelers, setSelectedTravelers] = React.useState(
+    Math.min(1, maxTravelers)
+  );
+
+  const priceValue = plan.priceValue ?? 0;
+  const subtotal = priceValue * selectedTravelers;
+  const serviceFee = Math.round(subtotal * 0.07);
+  const total = subtotal + serviceFee;
+  const travelerOptions = Array.from({ length: maxTravelers }, (_, i) => i + 1);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
       <div className="lg:col-span-2 space-y-12">
@@ -59,19 +129,10 @@ const PlanDetailContent: React.FC = () => {
             Resumen de la experiencia
           </h2>
           <p className="text-slate-600 leading-relaxed">
-            El Cañón de las Dalias es un santuario natural ubicado en el corazón
-            de Caquetá. Esta expedición recorre bosques tropicales para
-            descubrir un cañón escondido donde la luz se filtra sobre pozos
-            esmeralda. Es ideal para amantes de la naturaleza y viajeros que
-            buscan aventura con momentos de contemplación.
+            {plan.description}
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
-            {[
-              { label: "Dificultad", value: "Moderada", icon: "trending_up" },
-              { label: "Tamaño del grupo", value: "Máx. 12", icon: "group" },
-              { label: "Duración", value: "48 horas", icon: "schedule" },
-              { label: "Idiomas", value: "ES / EN", icon: "language" },
-            ].map((item) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-4">
+            {summaryItems.map((item) => (
               <div
                 key={item.label}
                 className="p-4 rounded-xl bg-primary/5 border border-primary/10 flex flex-col items-center text-center"
@@ -91,48 +152,44 @@ const PlanDetailContent: React.FC = () => {
             <Icon name="route" className="text-primary" />
             Itinerario detallado
           </h2>
-          <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-linear-to-b before:from-transparent before:via-slate-300 before:to-transparent">
-            {[
-              {
-                day: "01",
-                title: "Día 1: Llegada e inmersión inicial",
-                location: "Florencia",
-                description:
-                  "Encuentro en el aeropuerto de Florencia. Traslado a la reserva. Caminata vespertina hasta las primeras cascadas y cena amazónica tradicional.",
-              },
-              {
-                day: "02",
-                title: "Día 2: Exploración del cañón",
-                location: "Cañón de las Dalias",
-                description:
-                  "Desayuno temprano y expedición principal al cañón. Nado en pozos esmeralda, avistamiento de aves y estudio de formaciones rocosas. Regreso a Florencia.",
-              },
-            ].map((item, index) => (
-              <div
-                key={item.day}
-                className={`relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group ${
-                  index % 2 === 0 ? "md:odd" : "md:even"
-                }`}
-              >
-                <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-primary text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
-                  <span className="text-sm font-bold">{item.day}</span>
-                </div>
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl bg-white shadow-sm border border-slate-200">
-                  <div className="flex items-start justify-between gap-2 mb-2">
-                    <div className="font-bold text-primary leading-tight">
-                      {item.title}
+          {itineraryItems.length ? (
+            <div className="space-y-4">
+              {itineraryItems.map((item, index) => (
+                <div
+                  key={`${item}-${index}`}
+                  className="p-5 rounded-xl bg-white border border-slate-200 shadow-sm"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 text-primary">
+                      <Icon name="route" />
                     </div>
-                    <time className="text-xs font-bold text-slate-500 uppercase leading-tight pt-0.5">
-                      {item.location}
-                    </time>
-                  </div>
-                  <div className="text-slate-600 text-sm">
-                    {item.description}
+                    <p className="text-slate-600 text-sm">{item}</p>
                   </div>
                 </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-slate-500">
+              Aún no hay itinerario registrado para este plan.
+            </p>
+          )}
+          {destinationNames.length > 0 && (
+            <div className="pt-4">
+              <p className="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-3">
+                Destinos incluidos
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {destinationNames.map((name) => (
+                  <span
+                    key={name}
+                    className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold"
+                  >
+                    {name}
+                  </span>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          )}
         </section>
 
         <section className="space-y-6">
@@ -140,28 +197,34 @@ const PlanDetailContent: React.FC = () => {
             <Icon name="kayaking" className="text-primary" />
             Actividades destacadas
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {activities.map((activity) => (
-              <div
-                key={activity.title}
-                className="group relative overflow-hidden rounded-xl h-48 cursor-crosshair"
-              >
-                <Image
-                  src={activity.image}
-                  alt={activity.alt}
-                  title={activity.alt}
-                  fill
-                  sizes="(min-width: 1024px) 20vw, (min-width: 768px) 33vw, 100vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110 cursor-crosshair"
-                />
-                <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-4">
-                  <span className="text-white font-bold text-lg">
-                    {activity.title}
-                  </span>
+          {activityCards.length ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {activityCards.map((activity) => (
+                <div
+                  key={activity.title}
+                  className="group relative overflow-hidden rounded-xl h-48 cursor-crosshair"
+                >
+                  <Image
+                    src={activity.image}
+                    alt={activity.alt}
+                    title={activity.alt}
+                    fill
+                    sizes="(min-width: 1024px) 20vw, (min-width: 768px) 33vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110 cursor-crosshair"
+                  />
+                  <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-4">
+                    <span className="text-white font-bold text-lg">
+                      {activity.title}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-slate-500">
+              Aún no hay actividades registradas para este plan.
+            </p>
+          )}
         </section>
 
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -171,26 +234,12 @@ const PlanDetailContent: React.FC = () => {
               Incluye
             </h3>
             <ul className="space-y-3 text-slate-600 text-sm">
-              <li className="flex items-start gap-2">
-                <Icon name="check" className="text-xs text-primary mt-1" />
-                Guía profesional bilingüe
-              </li>
-              <li className="flex items-start gap-2">
-                <Icon name="check" className="text-xs text-primary mt-1" />
-                Todas las comidas (día 1 almuerzo a día 2 almuerzo)
-              </li>
-              <li className="flex items-start gap-2">
-                <Icon name="check" className="text-xs text-primary mt-1" />
-                Transporte local desde Florencia
-              </li>
-              <li className="flex items-start gap-2">
-                <Icon name="check" className="text-xs text-primary mt-1" />1
-                noche en eco-lodge
-              </li>
-              <li className="flex items-start gap-2">
-                <Icon name="check" className="text-xs text-primary mt-1" />
-                Seguro médico
-              </li>
+              {includes.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <Icon name="check" className="text-sm text-primary mt-0.5" />
+                  <span className="leading-5">{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="p-6 rounded-xl bg-slate-50 border border-slate-200">
@@ -199,28 +248,18 @@ const PlanDetailContent: React.FC = () => {
               No incluye
             </h3>
             <ul className="space-y-3 text-slate-500 text-sm">
-              <li className="flex items-start gap-2">
-                <Icon name="close" className="text-xs mt-1" />
-                Vuelos desde/hacia Florencia
-              </li>
-              <li className="flex items-start gap-2">
-                <Icon name="close" className="text-xs mt-1" />
-                Bebidas alcohólicas
-              </li>
-              <li className="flex items-start gap-2">
-                <Icon name="close" className="text-xs mt-1" />
-                Equipo personal (botas, impermeables)
-              </li>
-              <li className="flex items-start gap-2">
-                <Icon name="close" className="text-xs mt-1" />
-                Propinas para el equipo
-              </li>
+              {excludes.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <Icon name="close" className="text-sm mt-0.5" />
+                  <span className="leading-5">{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </section>
 
-        <PlanDetailGallery images={gallery} />
-        <PlanDetailMap />
+        <PlanDetailGallery images={galleryImages} />
+        <PlanDetailMap destination={primaryDestination} />
       </div>
 
       <aside className="lg:col-span-1">
@@ -228,7 +267,9 @@ const PlanDetailContent: React.FC = () => {
           <div className="bg-primary p-6 text-white">
             <p className="text-sm font-medium uppercase opacity-80">Desde</p>
             <div className="flex items-baseline gap-1">
-              <span className="text-4xl font-black">$85</span>
+              <span className="text-4xl font-black">
+                {formatCurrency(priceValue)}
+              </span>
               <span className="text-sm">/ por persona</span>
             </div>
           </div>
@@ -258,28 +299,42 @@ const PlanDetailContent: React.FC = () => {
                     name="groups"
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-primary"
                   />
-                  <select className="w-full pl-10 pr-4 py-3 rounded-full border border-slate-200 bg-slate-50 text-slate-700 focus:ring-primary focus:border-primary">
-                    <option>1 Adulto</option>
-                    <option>2 Adultos</option>
-                    <option>3 Adultos</option>
-                    <option>4 Adultos</option>
-                    <option>5+ Adultos</option>
+                  <select
+                    className="w-full pl-10 pr-4 py-3 rounded-full border border-slate-200 bg-slate-50 text-slate-700 focus:ring-primary focus:border-primary"
+                    value={selectedTravelers}
+                    onChange={(event) =>
+                      setSelectedTravelers(Number(event.target.value))
+                    }
+                  >
+                    {travelerOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option} {option === 1 ? "Adulto" : "Adultos"}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
             </div>
             <div className="pt-4 border-t border-slate-100 space-y-3 text-sm">
               <div className="flex justify-between text-slate-500">
-                <span>2 Adultos x $85</span>
-                <span className="font-bold text-slate-900">$170</span>
+                <span>
+                  {selectedTravelers} {selectedTravelers === 1 ? "Adulto" : "Adultos"} x {formatCurrency(priceValue)}
+                </span>
+                <span className="font-bold text-slate-900">
+                  {formatCurrency(subtotal)}
+                </span>
               </div>
               <div className="flex justify-between text-slate-500">
                 <span>Tarifa de servicio</span>
-                <span className="font-bold text-slate-900">$12</span>
+                <span className="font-bold text-slate-900">
+                  {formatCurrency(serviceFee)}
+                </span>
               </div>
               <div className="flex justify-between text-lg pt-2 border-t border-dashed border-slate-200">
                 <span className="font-bold text-slate-900">Total</span>
-                <span className="font-black text-primary">$182</span>
+                <span className="font-black text-primary">
+                  {formatCurrency(total)}
+                </span>
               </div>
             </div>
             <Button

@@ -1,16 +1,29 @@
-import React from "react";
+﻿import React from "react";
 import Image from "next/image";
+import { type PlanDetail } from "@/types/planDetail";
 
 const heroImage =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCnYgzb2OOjNV0klNlydE3WlXGb3G7x5_uIBQfCx3Q_1VvAQEVyUU2Qaf74rHnylTIcUbMHGqVglazKTWXrfStk_x5gINqYhHI9vFITVhRSnPftOIrsXQ94JQPjp1O_D1cLddjjij6MKPfzI7YIM7HWYiBiLfhSPqlRiSJhU3iKXPcEqMdc9UbLCyGFirZbK7GZDbIc3QBfmz8OgmWbSv7PLIXv_SNQGPAvT_zJZLJGH3d8reBOuGLbXoJAQBBxBm8c0Cm9PDUhTYA";
 
-const PlanDetailHero: React.FC = () => {
+const formatDurationBadge = (days?: number | null) => {
+  if (!days || days <= 0) return "Duración por definir";
+  return days === 1 ? "1 Día" : `${days} Días`;
+};
+
+interface PlanDetailHeroProps {
+  plan: PlanDetail;
+}
+
+const PlanDetailHero: React.FC<PlanDetailHeroProps> = ({ plan }) => {
+  const categoryLabel = plan.categories?.[0] ?? "Aventura";
+  const durationLabel = formatDurationBadge(plan.durationDays ?? undefined);
+
   return (
     <section className="relative h-[60vh] min-h-105 w-full overflow-hidden">
       <Image
         src={heroImage}
-        alt="Vista aérea del cañón y río en Caquetá"
-        title="Vista aérea del cañón y río en Caquetá"
+        alt={plan.title}
+        title={plan.title}
         fill
         priority
         sizes="100vw"
@@ -21,19 +34,17 @@ const PlanDetailHero: React.FC = () => {
         <div className="max-w-3xl">
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <span className="px-3 py-1 bg-primary rounded-full text-xs font-bold uppercase tracking-wider">
-              Ecoturismo
+              {categoryLabel}
             </span>
             <span className="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-wider">
-              2 Días / 1 Noche
+              {durationLabel}
             </span>
           </div>
           <h1 className="text-4xl md:text-6xl font-black mb-4 tracking-tight">
-            Expedición al Cañón de las Dalias
+            {plan.title}
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-slate-100 max-w-2xl font-light">
-            Descubre el tesoro esmeralda de Caquetá, donde rocas milenarias y
-            aguas cristalinas se encuentran en el corazón del piedemonte
-            amazónico.
+            {plan.description}
           </p>
         </div>
       </div>
