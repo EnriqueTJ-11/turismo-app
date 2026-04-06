@@ -2,8 +2,7 @@ import React from "react";
 import Navbar from "@/components/shared/organisms/Navbar";
 import Footer from "@/components/shared/organisms/Footer";
 import SitesHero from "@/components/features/sitios/organisms/SitesHero";
-import SitesFilters from "@/components/features/sitios/organisms/SitesFilters";
-import SitesGrid from "@/components/features/sitios/organisms/SitesGrid";
+import SitesExplorer from "@/components/features/sitios/organisms/SitesExplorer";
 
 const SitesTemplate: React.FC = () => {
   return (
@@ -12,8 +11,7 @@ const SitesTemplate: React.FC = () => {
       <main className="flex-1">
         <SitesHero />
         <div className="max-w-7xl mx-auto pb-12 pt-10 px-4 sm:px-6 lg:px-8">
-          <SitesFilters />
-          <SitesGrid />
+          <SitesExplorer />
         </div>
       </main>
       <Footer />
