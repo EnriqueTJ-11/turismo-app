@@ -67,6 +67,31 @@ const pickLocation = (municipios?: string | null, destinos?: string | null) => {
   return "Caquetá";
 };
 
+export const mapPaquetesToCatalog = (
+  paquetes: ReturnType<typeof PaquetesApiSchema.parse>,
+): PlanCatalogItem[] => {
+  const mapped: PlanCatalogItem[] = paquetes.map((item) => ({
+    id: item.id,
+    title: item.nombre,
+    description: item.descripcion,
+    image: DEFAULT_PLAN_IMAGE,
+    price: formatPrice(item.precio),
+    location: pickLocation(item.municipios, item.destinos),
+    duration: formatDuration(item.duracion_dias ?? undefined),
+    difficulty: normalizeDifficulty(item.dificultad),
+    badge: pickBadge(item.categorias),
+    isFavorite: false,
+    durationDays: item.duracion_dias ?? undefined,
+    priceValue: item.precio,
+    categories: splitValues(item.categorias),
+    destinations: splitValues(item.destinos),
+    municipalities: splitValues(item.municipios),
+    capacityMax: item.capacidad_max_personas ?? undefined,
+  }));
+
+  return PlanCatalogSchema.parse(mapped);
+};
+
 export const getPlanCatalog = async (): Promise<PlanCatalogItem[]> => {
   try {
     const { data } = await api.get("/paquetes", {
@@ -79,27 +104,7 @@ export const getPlanCatalog = async (): Promise<PlanCatalogItem[]> => {
     });
 
     const paquetes = PaquetesApiSchema.parse(data);
-
-    const mapped: PlanCatalogItem[] = paquetes.map((item) => ({
-      id: item.id,
-      title: item.nombre,
-      description: item.descripcion,
-      image: DEFAULT_PLAN_IMAGE,
-      price: formatPrice(item.precio),
-      location: pickLocation(item.municipios, item.destinos),
-      duration: formatDuration(item.duracion_dias ?? undefined),
-      difficulty: normalizeDifficulty(item.dificultad),
-      badge: pickBadge(item.categorias),
-      isFavorite: false,
-      durationDays: item.duracion_dias ?? undefined,
-      priceValue: item.precio,
-      categories: splitValues(item.categorias),
-      destinations: splitValues(item.destinos),
-      municipalities: splitValues(item.municipios),
-      capacityMax: item.capacidad_max_personas ?? undefined,
-    }));
-
-    return PlanCatalogSchema.parse(mapped);
+    return mapPaquetesToCatalog(paquetes);
   } catch (error) {
     console.error("Error cargando planes desde la API:", error);
     return PlanCatalogSchema.parse([]);

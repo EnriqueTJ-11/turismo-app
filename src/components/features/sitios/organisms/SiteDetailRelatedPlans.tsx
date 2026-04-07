@@ -1,9 +1,15 @@
+import React from "react";
 import TourCard from "@/components/features/planes/molecules/TourCard";
-import { getPlanCatalog } from "@/services/planCatalog";
 import Icon from "@/components/shared/atoms/Icon";
+import { type PlanCatalogItem } from "@/types/planCatalog";
 
-const SiteDetailRelatedPlans = async () => {
-  const plans = await getPlanCatalog();
+interface SiteDetailRelatedPlansProps {
+  plans: PlanCatalogItem[];
+}
+
+const SiteDetailRelatedPlans: React.FC<SiteDetailRelatedPlansProps> = ({
+  plans,
+}) => {
   const featuredPlans = plans.slice(0, 3);
 
   return (
@@ -34,6 +40,11 @@ const SiteDetailRelatedPlans = async () => {
           {featuredPlans.map((plan) => (
             <TourCard key={plan.id} plan={plan} />
           ))}
+          {featuredPlans.length === 0 && (
+            <div className="col-span-full text-center text-slate-500">
+              No hay planes relacionados para este sitio.
+            </div>
+          )}
         </div>
       </div>
     </section>

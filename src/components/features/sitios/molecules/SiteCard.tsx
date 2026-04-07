@@ -3,15 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import Icon from "@/components/shared/atoms/Icon";
 import { type SiteCatalogItem } from "@/types/siteCatalog";
+import { extractSiteSlug } from "@/utils/siteId";
 
 interface SiteCardProps {
   site: SiteCatalogItem;
 }
 
 const SiteCard: React.FC<SiteCardProps> = ({ site }) => {
+  const slug = extractSiteSlug(site.id);
   return (
     <Link
-      href="/sitios/detalle"
+      href={`/sitios/${slug}`}
       title={`Ver ${site.name}`}
       aria-label={`Ver detalle de ${site.name}`}
       className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 grid grid-cols-1 md:grid-cols-[180px,1fr] cursor-pointer"
