@@ -1,3 +1,4 @@
+import React from "react";
 import Navbar from "@/components/shared/organisms/Navbar";
 import Footer from "@/components/shared/organisms/Footer";
 import SiteDetailHero from "@/components/features/sitios/organisms/SiteDetailHero";
@@ -5,11 +6,18 @@ import SiteDetailGallery from "@/components/features/sitios/organisms/SiteDetail
 import SiteDetailVideo from "@/components/features/sitios/organisms/SiteDetailVideo";
 import SiteDetailSidebar from "@/components/features/sitios/organisms/SiteDetailSidebar";
 import SiteDetailRelatedPlans from "@/components/features/sitios/organisms/SiteDetailRelatedPlans";
-import { getSiteDetail } from "@/services/siteDetail";
+import { type SiteDetail } from "@/types/siteDetail";
+import { type PlanCatalogItem } from "@/types/planCatalog";
 
-const SiteDetailTemplate = async () => {
-  const site = await getSiteDetail();
+interface SiteDetailTemplateProps {
+  site: SiteDetail;
+  relatedPlans: PlanCatalogItem[];
+}
 
+const SiteDetailTemplate: React.FC<SiteDetailTemplateProps> = ({
+  site,
+  relatedPlans,
+}) => {
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light text-slate-900">
       <Navbar />
@@ -32,7 +40,7 @@ const SiteDetailTemplate = async () => {
           </div>
           <SiteDetailSidebar site={site} />
         </div>
-        <SiteDetailRelatedPlans />
+        <SiteDetailRelatedPlans plans={relatedPlans} />
       </main>
       <Footer />
     </div>

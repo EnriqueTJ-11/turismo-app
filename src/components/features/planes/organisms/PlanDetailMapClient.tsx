@@ -2,13 +2,19 @@
 
 import React from "react";
 
-const position: [number, number] = [1.6144, -75.6117];
-
 type ReactLeafletModule = typeof import("react-leaflet");
 
 type LeafletModule = typeof import("leaflet");
 
-const PlanDetailMapClient: React.FC = () => {
+interface PlanDetailMapClientProps {
+  position: [number, number];
+  label: string;
+}
+
+const PlanDetailMapClient: React.FC<PlanDetailMapClientProps> = ({
+  position,
+  label,
+}) => {
   const [leafletModule, setLeafletModule] = React.useState<
     ReactLeafletModule | null
   >(null);
@@ -80,7 +86,7 @@ const PlanDetailMapClient: React.FC = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Marker position={position}>
-        <Popup>Cañón de las Dalias · Florencia, Caquetá</Popup>
+        <Popup>{label}</Popup>
       </Marker>
     </MapContainer>
   );

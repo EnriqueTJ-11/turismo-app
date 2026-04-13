@@ -7,6 +7,7 @@ import Icon from "@/components/shared/atoms/Icon";
 interface GalleryImage {
   image: string;
   alt: string;
+  label?: string;
 }
 
 interface PlanDetailGalleryProps {
@@ -59,20 +60,27 @@ const PlanDetailGallery: React.FC<PlanDetailGalleryProps> = ({ images }) => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {images.map((item, index) => (
           <button
-            key={item.image}
+            key={`${item.image}-${item.label ?? item.alt}`}
             type="button"
-            className="relative h-32 w-full overflow-hidden rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/40"
+            className="group relative h-32 w-full overflow-hidden rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/40"
             onClick={() => setActiveIndex(index)}
             title="Ver imagen en detalle"
           >
             <Image
               src={item.image}
               alt={item.alt}
-              title={item.alt}
+              title={item.label ?? item.alt}
               fill
               sizes="(min-width: 1024px) 16vw, (min-width: 768px) 25vw, 50vw"
-              className="object-cover hover:opacity-80 transition-opacity"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
+            {item.label && (
+              <div className="absolute inset-0 bg-linear-to-t from-black/65 via-black/10 to-transparent flex items-end p-3">
+                <span className="text-white text-xs font-semibold drop-shadow">
+                  {item.label}
+                </span>
+              </div>
+            )}
           </button>
         ))}
       </div>
@@ -104,7 +112,7 @@ const PlanDetailGallery: React.FC<PlanDetailGalleryProps> = ({ images }) => {
                 {activeIndex + 1} / {images.length}
               </span>
               <span className="max-w-xs truncate">
-                {images[activeIndex].alt}
+                {images[activeIndex].label ?? images[activeIndex].alt}
               </span>
             </div>
             <button
