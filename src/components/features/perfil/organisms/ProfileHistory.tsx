@@ -23,9 +23,17 @@ const ProfileHistory: React.FC<ProfileHistoryProps> = ({ history }) => {
             </tr>
           </thead>
           <tbody className="divide-y divide-primary/5">
-            {history.map((item) => (
-              <ProfileHistoryRow key={item.id} item={item} />
-            ))}
+            {history.length > 0 ? (
+              history.map((item) => (
+                <ProfileHistoryRow key={item.id} item={item} />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={4} className="px-6 py-10 text-center">
+                  <p className="text-slate-500 text-sm italic">Aún no has realizado viajes con nosotros.</p>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

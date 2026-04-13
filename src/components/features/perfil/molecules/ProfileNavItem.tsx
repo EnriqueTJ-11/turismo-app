@@ -5,16 +5,19 @@ interface ProfileNavItemProps {
   icon: string;
   label: string;
   active?: boolean;
+  onClick?: () => void;
 }
 
 const ProfileNavItem: React.FC<ProfileNavItemProps> = ({
   icon,
   label,
   active = false,
+  onClick,
 }) => {
   return (
     <button
       type="button"
+      onClick={onClick}
       className={`flex items-center gap-3 px-4 py-2.5 rounded-full font-medium transition-all w-full text-left cursor-pointer ${
         active
           ? "bg-primary text-white"

@@ -6,9 +6,11 @@ import Button from "@/components/shared/atoms/Button";
 import Icon from "@/components/shared/atoms/Icon";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
+  const { user, isAuthenticated, logout } = useAuth();
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -41,11 +43,10 @@ const Navbar: React.FC = () => {
               return (
                 <Link
                   key={item.href}
-                  className={`text-sm transition-colors ${
-                    active
+                  className={`text-sm transition-colors ${active
                       ? "text-primary font-bold"
                       : "text-slate-600 hover:text-primary font-semibold"
-                  }`}
+                    }`}
                   href={item.href}
                   title={item.title}
                 >
@@ -56,15 +57,48 @@ const Navbar: React.FC = () => {
           </nav>
 
           <div className="flex items-center gap-4">
-            <Link href="/login" title="Ir a iniciar sesión">
-              <Button
-                variant="primary"
-                className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold normal-case tracking-normal shadow-md shadow-primary/20 hover:shadow-primary/30 cursor-pointer"
-              >
-                <Icon name="login" className="text-sm" />
-                Iniciar sesión
-              </Button>
-            </Link>
+            {isAuthenticated ? (
+              /* --- VISTA CUANDO EL USUARIO ESTÁ LOGUEADO --- */
+              <div className="flex items-center gap-3">
+                <div className="hidden sm:flex flex-col items-end mr-2">
+                  <span className="text-xs font-bold text-slate-900 leading-none">
+                    {user?.nombre_completo}
+                  </span>
+                  <span className="text-[10px] text-primary font-semibold uppercase tracking-wider">
+                    {user?.rol}
+                  </span>
+                </div>
+
+                {/* Botón de Perfil / Avatar */}
+                <Link href="/perfil" title="Ver mi perfil">
+                  <div className="h-9 w-9 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                    <Icon name="person" />
+                  </div>
+                </Link>
+
+                {/* Botón de Cerrar Sesión */}
+                <button
+                  onClick={logout}
+                  className="p-2 text-slate-400 hover:text-red-500 transition-colors"
+                  title="Cerrar sesión"
+                >
+                  <Icon name="logout" className="text-xl" />
+                </button>
+              </div>
+            ) : (
+              /* --- VISTA CUANDO NO HAY NADIE LOGUEADO --- */
+              <Link href="/login" title="Ir a iniciar sesión">
+                <Button
+                  variant="primary"
+                  className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold normal-case tracking-normal shadow-md shadow-primary/20 hover:shadow-primary/30 cursor-pointer"
+                >
+                  <Icon name="login" className="text-sm" />
+                  Iniciar sesión
+                </Button>
+              </Link>
+            )}
+
+            {/* Botón menú móvil (se mantiene igual) */}
             <button
               className="md:hidden text-slate-900 p-2 rounded-full hover:bg-primary/10 transition-colors"
               type="button"

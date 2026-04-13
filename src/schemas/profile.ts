@@ -34,6 +34,7 @@ export const ProfileSchema = z.object({
   name: z.string(),
   location: z.string(),
   avatar: z.string().url(),
+  bio: z.string().optional(),
   stats: ProfileStatsSchema,
   bookings: z.array(ProfileBookingSchema),
   history: z.array(ProfileHistoryItemSchema),
