@@ -1,8 +1,9 @@
-﻿/* eslint-disable @next/next/no-page-custom-font */
+/* eslint-disable @next/next/no-page-custom-font */
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
+import { ChatShell } from "@/components/features/chat/organisms/ChatShell";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -50,6 +51,7 @@ export default function RootLayout({
       <body className={`${plusJakarta.variable} antialiased`}>
         <AuthProvider>
           {children}
+          <ChatShell />
         </AuthProvider>
       </body>
     </html>
