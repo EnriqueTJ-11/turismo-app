@@ -54,8 +54,12 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     try {
       await onSave(formData);
       onClose();
-    } catch (err: any) {
-      setError(err.message || "Ocurrió un error al guardar el perfil");
+    } catch (err: unknown) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Ocurrió un error al guardar el perfil",
+      );
     } finally {
       setLoading(false);
     }

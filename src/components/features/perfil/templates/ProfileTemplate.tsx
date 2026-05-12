@@ -17,7 +17,6 @@ const ProfileTemplate = () => {
   const { token, loading } = useAuth();
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isUpdating, setIsUpdating] = useState(false);
 
   // Usamos useCallback para que la función sea estable y no dispare useEffect innecesariamente
   const fetchProfile = useCallback(async () => {
@@ -34,6 +33,7 @@ const ProfileTemplate = () => {
   useEffect(() => {
     // Solo pedimos el perfil si el AuthContext terminó de cargar y tenemos un token
     if (!loading && token) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       fetchProfile();
     }
   }, [token, loading, fetchProfile]);
@@ -42,15 +42,12 @@ const ProfileTemplate = () => {
     if (!token) return;
 
     try {
-      setIsUpdating(true);
       await updateProfile(token, data);
       await fetchProfile(); // Refrescamos los datos desde Fuseki/Postgres
       setIsEditModalOpen(false); // Cerramos el modal solo tras el éxito
     } catch (error) {
       console.error("Error al actualizar:", error);
       alert("Hubo un error al guardar los cambios.");
-    } finally {
-      setIsUpdating(false);
     }
   };
 

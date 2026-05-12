@@ -21,7 +21,7 @@ export const getProfile = async (token: string): Promise<ProfileData> => {
 export const updateProfile = async (
   token: string,
   profileData: { name: string; location: string; avatar: string; bio: string }
-): Promise<any> => {
+): Promise<ProfileData> => {
   const response = await fetch("http://localhost:8000/usuarios/me", {
     method: "PUT",
     headers: {
@@ -35,5 +35,6 @@ export const updateProfile = async (
     throw new Error("Error al actualizar el perfil");
   }
 
-  return await response.json();
+  const data = await response.json();
+  return ProfileSchema.parse(data);
 };

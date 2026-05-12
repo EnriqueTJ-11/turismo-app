@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import Input from "@/components/shared/atoms/Input";
 import Button from "@/components/shared/atoms/Button";
 import Icon from "@/components/shared/atoms/Icon";
@@ -16,7 +15,6 @@ const LoginForm: React.FC = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,8 +42,8 @@ const LoginForm: React.FC = () => {
       // Guardar sesión
       login(data.access_token, data.user);
 
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Error al iniciar sesiÃ³n");
     } finally {
       setIsLoading(false);
     }
@@ -86,7 +84,7 @@ const LoginForm: React.FC = () => {
             type="email"
             required
             value={email}
-            onChange={(e: any) => setEmail(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           />
 
           <Input
@@ -96,7 +94,7 @@ const LoginForm: React.FC = () => {
             type={showPassword ? "text" : "password"}
             required
             value={password}
-            onChange={(e: any) => setPassword(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
             icon={
               <button
                 type="button"

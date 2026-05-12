@@ -15,7 +15,7 @@ const DEFAULT_POSITION: [number, number] = [1.6144, -75.6117];
 const PlanDetailMap: React.FC<PlanDetailMapProps> = ({ destination }) => {
   const hasCoords =
     destination?.latitude !== undefined && destination?.longitude !== undefined;
-  const position = hasCoords
+  const position: [number, number] = hasCoords
     ? [destination!.latitude!, destination!.longitude!]
     : DEFAULT_POSITION;
   const label = destination?.name ?? "Destino en Caquetá";

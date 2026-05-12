@@ -72,8 +72,8 @@ const RegisterForm: React.FC = () => {
       const data = await response.json();
       // Inicia sesión automáticamente tras el registro
       login(data.access_token, data.user);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Error al crear la cuenta");
     } finally {
       setIsLoading(false);
     }
@@ -124,7 +124,7 @@ const RegisterForm: React.FC = () => {
             required
             autoComplete="name"
             value={nombreCompleto}
-            onChange={(e: any) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setNombreCompleto(e.target.value);
               setFieldErrors((prev) => ({ ...prev, nombreCompleto: "" }));
             }}
@@ -139,7 +139,7 @@ const RegisterForm: React.FC = () => {
             required
             autoComplete="email"
             value={email}
-            onChange={(e: any) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setEmail(e.target.value);
               setFieldErrors((prev) => ({ ...prev, email: "" }));
             }}
@@ -154,7 +154,7 @@ const RegisterForm: React.FC = () => {
             required
             autoComplete="new-password"
             value={password}
-            onChange={(e: any) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setPassword(e.target.value);
               setFieldErrors((prev) => ({ ...prev, password: "" }));
             }}
@@ -184,7 +184,7 @@ const RegisterForm: React.FC = () => {
             required
             autoComplete="new-password"
             value={confirmPassword}
-            onChange={(e: any) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setConfirmPassword(e.target.value);
               setFieldErrors((prev) => ({ ...prev, confirmPassword: "" }));
             }}

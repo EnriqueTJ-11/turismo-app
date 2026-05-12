@@ -2,7 +2,6 @@
 
 import React from "react";
 import { ChatMessage } from "@/types/chat";
-import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 interface MessageBubbleProps {
