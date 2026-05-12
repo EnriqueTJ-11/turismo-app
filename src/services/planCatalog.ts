@@ -1,7 +1,7 @@
 import { PlanCatalogSchema } from "@/schemas/planCatalog";
 import { PaquetesApiSchema } from "@/schemas/paqueteApi";
 import { type PlanCatalogItem } from "@/types/planCatalog";
-import { api } from "@/lib/api";
+import { fetchApiJson } from "@/lib/api";
 
 const DEFAULT_PLAN_IMAGE =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuAREAoYNXk7XtCVxCzUhyjO6lMcI_QrHEtxD2kFQoNnCE_GjTO5m0ax8SUzR8sIob_3EigB8Ln0hYrvMKP5xMwLVy1VsJV1JNT68j_oUj6ZRbPQltc8q_c8a-79R4YGGBhI1geChmVhfZ4PRe38x7CU3-pc6RVQyHVRRiuRBKSKgj3CJjsQaS9ADZS25yLQdwxoG2psE6ntWRW4ka_YSFNj8uDQYu0mYhidx7tD8WT9zWqUYDvqQl-HOsEgfWHenoV-QJwM0hE1bQg";
@@ -94,14 +94,15 @@ export const mapPaquetesToCatalog = (
 
 export const getPlanCatalog = async (): Promise<PlanCatalogItem[]> => {
   try {
-    const { data } = await api.get("/paquetes", {
-      params: {
+    const data = await fetchApiJson<unknown>(
+      "/paquetes",
+      {
         busqueda: "",
         max_precio: 2000000,
         limit: 300,
         offset: 0,
       },
-    });
+    );
 
     const paquetes = PaquetesApiSchema.parse(data);
     return mapPaquetesToCatalog(paquetes);

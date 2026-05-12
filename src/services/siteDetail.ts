@@ -1,4 +1,4 @@
-import { api } from "@/lib/api";
+import { fetchApiJson } from "@/lib/api";
 import { SiteDetailSchema } from "@/schemas/siteDetail";
 import { SitioDetalleApiSchema } from "@/schemas/sitioDetalleApi";
 import { PaquetesApiSchema } from "@/schemas/paqueteApi";
@@ -105,7 +105,7 @@ export const getSiteDetail = async (slugOrId: string) => {
   const slug = extractSiteSlug(slugOrId);
 
   try {
-    const { data } = await api.get(`/sitios/${slug}`);
+    const data = await fetchApiJson<unknown>(`/sitios/${slug}`);
     return mapFromApi(data);
   } catch (error) {
     try {
@@ -126,12 +126,13 @@ export const getSiteDetail = async (slugOrId: string) => {
 export const getSiteRelatedPlans = async (slugOrId: string): Promise<PlanCatalogItem[]> => {
   const slug = extractSiteSlug(slugOrId);
   try {
-    const { data } = await api.get(`/sitios/${slug}/planes`, {
-      params: {
+    const data = await fetchApiJson<unknown>(
+      `/sitios/${slug}/planes`,
+      {
         limit: 3,
         offset: 0,
       },
-    });
+    );
     const paquetes = PaquetesApiSchema.parse(data);
     return mapPaquetesToCatalog(paquetes);
   } catch (error) {

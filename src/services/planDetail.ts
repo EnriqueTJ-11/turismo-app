@@ -1,4 +1,4 @@
-﻿import { api } from "@/lib/api";
+import { fetchApiJson } from "@/lib/api";
 import { getPlanCatalog } from "@/services/planCatalog";
 import { PaqueteDetalleApiSchema } from "@/schemas/paqueteDetalleApi";
 import { PlanDetailSchema } from "@/schemas/planDetail";
@@ -114,7 +114,7 @@ export const getPlanDetail = async (slugOrId: string) => {
   const slug = extractPlanSlug(slugOrId);
 
   try {
-    const { data } = await api.get(`/paquetes/${slug}`);
+    const data = await fetchApiJson<unknown>(`/paquetes/${slug}`);
     return mapFromApi(data, slug);
   } catch (error) {
     try {

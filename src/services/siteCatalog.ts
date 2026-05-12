@@ -3,7 +3,7 @@ import { SitiosApiSchema } from "@/schemas/sitioApi";
 import { SitioFiltrosApiSchema } from "@/schemas/sitioFiltrosApi";
 import { type SiteCatalogItem } from "@/types/siteCatalog";
 import { type SiteFilterOptions } from "@/types/siteFilters";
-import { api } from "@/lib/api";
+import { fetchApiJson } from "@/lib/api";
 
 const DEFAULT_SITE_IMAGE =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuC60HHqwkAqT8z-9WISh1b9hH_JzHZ3PM0tdgKb3we9ybV--hQpkzhZu_1Axy7QaFw0LJo32u1-XiLBlcWIE2anlVnaxSQ15MWjG7NQlAFKuNGa2DioIYSh79OitxMxz1VvErYQEdZ9FHZcSX8rZ4x6JV86ObCM7sD87gaTSGE3yHfiNpz_cj72iSQM32u7tpJyEmXxyPnKaloxR2fFcWPu3c9g7mTMWSq-Guer5saCW9DwSbeshh252y4Hvw0acDkvAOV4GjNJmO2y";
@@ -39,8 +39,9 @@ const pickType = (tipos?: string | null) => {
 
 export const getSiteCatalog = async (): Promise<SiteCatalogItem[]> => {
   try {
-    const { data } = await api.get("/sitios", {
-      params: {
+    const data = await fetchApiJson<unknown>(
+      "/sitios",
+      {
         busqueda: "",
         tipo: "",
         municipio: "",
@@ -48,7 +49,7 @@ export const getSiteCatalog = async (): Promise<SiteCatalogItem[]> => {
         limit: 300,
         offset: 0,
       },
-    });
+    );
 
     const sitios = SitiosApiSchema.parse(data);
 
@@ -75,7 +76,7 @@ export const getSiteCatalog = async (): Promise<SiteCatalogItem[]> => {
 
 export const getSiteFilters = async (): Promise<SiteFilterOptions> => {
   try {
-    const { data } = await api.get("/sitios/filtros");
+    const data = await fetchApiJson<unknown>("/sitios/filtros");
     const filtros = SitioFiltrosApiSchema.parse(data);
     return {
       types: filtros.tipos.map((tipo) => tipo.nombre),
